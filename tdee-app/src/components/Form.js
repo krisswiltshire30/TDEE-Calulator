@@ -9,11 +9,15 @@ class Form extends Component {
       height: '',
       activity_level: '',
       body_fat: '',
-      result: ''
+      bmr: '',
+      tdee: ''
     };
   }
 
-  handleChange(event) { }
+  handleChange = (statename, event) => {
+    this.setState({ [statename]: event.target.value });
+    console.log(this.state.age);
+  };
 
   render() {
     return (
@@ -24,49 +28,49 @@ class Form extends Component {
             type="text"
             data-testid="age-test"
             placeholder="Age"
-            value={this.state.age}
-            onChange={this.handleChange}
+            onChange={(e) => this.handleChange('', e)}
           />
         </p>
         <p>
           <input
             type="text"
             data-testid="weight-test"
-            placeholder="Weight"
-            value={this.state.weight}
-            onChange={this.handleChange}
+            placeholder="Weight - kg"
+            onChange={(e) => this.setState({ weight: e.target.value })}
           />
         </p>
         <p>
           <input
             type="text"
             data-testid="height-test"
-            placeholder="Height"
-            value={this.state.height}
-            onChange={this.handleChange}
+            placeholder="Height - cm"
+            onChange={(e) => this.handleChange('name', e)}
           />
         </p>
         <p>
-          <input
-            type="text"
+          <select
             data-testid="activity-test"
-            placeholder="Activity Level"
-            value={this.state.activity_level}
-            onChange={this.handleChange}
-          />
+            onChange={(e) => this.handleChange('name', e)}>
+            <option value="sedentary">Sedentary - office job</option>
+            <option value="light">Light Exercise - 1/2 days a week</option>
+            <option value="moderate">Moderate Exercise - 3/5 days a week</option>
+            <option value="heavy">Heavy Exercise - 6/7 days a week</option>
+            <option value="athlete">Athlete - 2x a day</option>
+          </select>
         </p>
         <p>
           <input
             type="text"
             data-testid="bodyfat-test"
-            placeholder="Body Fat %"
-            value={this.state.activity_level}
-            onChange={this.handleChange}
+            placeholder="Body Fat - %"
+            onChange={(e) => this.handleChange('name', e)}
           />
         </p>
+        <input type="submit" value="Calculate" />
       </form>
+
     );
   }
 }
 
-export default Form;;;;
+export default Form;
