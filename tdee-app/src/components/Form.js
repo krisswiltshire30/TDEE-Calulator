@@ -33,6 +33,7 @@ class Form extends Component {
         </p>
         <p>
           <input
+          
             type="text"
             data-testid="weight-test"
             placeholder="Weight - kg"
